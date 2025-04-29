@@ -10,10 +10,10 @@ export default class Header extends Component<Props> {
         <h1>World Beauty</h1>
         <nav>
           <ul className="nav-list">
-            <li><a href="#home">Clientes</a></li>
-            <li><a href="#sobre">Produtos</a></li>
+            <li><a href="#clientes">Clientes</a></li>
+            <li><a href="#produtos">Produtos</a></li>
             <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#contato">Relatórios</a></li>
+            <li><a href="#relatorios">Relatórios</a></li>
           </ul>
         </nav>
       </header>
