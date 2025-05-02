@@ -10,7 +10,7 @@ type State = {
     mensagem: string;
 };
 
-export default class FormCadastro extends Component<{}, State> {
+export default class AtlCliente extends Component<{}, State> {
     state: State = {
         nome: '',
         nomeSocial: '',
@@ -34,7 +34,7 @@ export default class FormCadastro extends Component<{}, State> {
             genero: '',
             numeroCpf: '',
             dataCpf: '',
-            mensagem: 'Cliente cadastrado com sucesso!'
+            mensagem: 'Cliente atualizado com sucesso!'
         });
     };
     render() {
@@ -42,7 +42,7 @@ export default class FormCadastro extends Component<{}, State> {
 
         return (
             <div className="form">
-                <h3>Cadastrar</h3>
+                <h3>Atualizar</h3>
                 <form onSubmit={this.handleSubmit}>
                     <label htmlFor="nome">Nome</label>
                     <input
@@ -94,7 +94,7 @@ export default class FormCadastro extends Component<{}, State> {
                         </div>
                     </fieldset>
 
-                    <button type="submit">Cadastrar</button>
+                    <button type="submit">Atualizar</button>
                 </form>
                 {this.state.mensagem && (
                     <p className="mensagem">{this.state.mensagem}</p>

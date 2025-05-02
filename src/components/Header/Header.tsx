@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Header.css';
+import { Link } from 'react-router-dom';
 
 type Props = {};
 
@@ -7,13 +8,13 @@ export default class Header extends Component<Props> {
   render() {
     return (
       <header className="header">
-        <h1>World Beauty</h1>
+        <Link to="/clientes"><h1>World Beauty</h1></Link>
         <nav>
           <ul className="nav-list">
-            <li><a href="#clientes">Clientes</a></li>
-            <li><a href="#produtos">Produtos</a></li>
-            <li><a href="#servicos">Serviços</a></li>
-            <li><a href="#relatorios">Relatórios</a></li>
+            <li><Link to="/clientes">Clientes</Link></li>
+            <li><Link to="/produtos">Produtos</Link></li>
+            <li><Link to="/servicos">Serviços</Link></li>
+            <li><Link to="/relatorios">Relatórios</Link></li>
           </ul>
         </nav>
       </header>
