@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Card from '../components/Card/Card';
+import CadServico from '../components/Forms/CadServico';
 
 type State = {
   selectedCard: string | null;
@@ -18,7 +19,7 @@ export default class Servicos extends Component<{}, State> {
     const { selectedCard } = this.state;
     switch (selectedCard) {
       case 'Cadastrar Produto':
-        return <p>Formulário de cadastro de serviço (em construção)</p>;
+        return <CadServico />
       case 'Excluir Produto':
         return <p>Formulário de exclusão de serviço (em construção)</p>;
       case 'Atualizar Produto':

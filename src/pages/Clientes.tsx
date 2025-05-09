@@ -10,7 +10,7 @@ import Relatorios from './Relatorios';
 import CadCliente from '../components/Forms/CadCliente';
 import ExcCliente from '../components/Forms/ExcCliente';
 import AtlCliente from '../components/Forms/AtlCliente';
-import PsqCliente from '../components/Forms/PsqCliente';
+import TabelaCliente from '../components/Table/TabelaCliente';
 
 type State = {
   selectedCard: string | null;
@@ -35,7 +35,7 @@ class Clientes extends Component<{}, State> {
       case 'Atualizar':
         return <AtlCliente />;
       case 'Pesquisar':
-        return <PsqCliente />;
+        return <TabelaCliente />;
       default:
         return null;
     }

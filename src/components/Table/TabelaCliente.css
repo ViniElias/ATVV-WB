@@ -1,0 +1,84 @@
+.tabela-clientes {
+  margin: 2rem auto;
+  width: 95%;
+  max-width: 800px;
+  animation: fadeIn 0.3s ease;
+  min-height: 600px;
+}
+
+.tabela-clientes h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.tabela-clientes table {
+  width: 100%;
+  border-collapse: collapse;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tabela-clientes th,
+.tabela-clientes td {
+  padding: 12px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.tabela-clientes th {
+  background-color: #dc3872;
+  color: white;
+  border: none;
+}
+
+.tabela-clientes tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+.input-busca {
+  width: 100%;
+  max-width: 300px;
+  padding: 0.5rem 1rem;
+  margin: 1rem auto;
+  display: block;
+  border: 1px solid #aaa;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.paginacao {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.paginacao button {
+  padding: 0.4rem 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.paginacao .ativo {
+  background-color: #dc3872;
+  color: white;
+  border-color: #dc3872;
+  font-weight: bold;
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

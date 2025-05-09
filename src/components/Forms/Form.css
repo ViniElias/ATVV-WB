@@ -38,12 +38,12 @@
 }
 
 .form input:focus {
-  border-color: #007bff;
+  border-color: #dc3872;
   outline: none;
 }
 
 .form button {
-  background-color: #007bff;
+  background-color: #dc3872;
   color: white;
   border: none;
   padding: 0.8rem 1rem;
@@ -51,10 +51,6 @@
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-}
-
-.form button:hover {
-  background-color: #0056b3;
 }
 
 form fieldset {
@@ -71,6 +67,7 @@ form fieldset {
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
+  accent-color: #dc3872;
 }
 
 #fieldGenero label {
