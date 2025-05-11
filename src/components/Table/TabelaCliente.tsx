@@ -1,5 +1,5 @@
 import React, { Component, ChangeEvent } from 'react';
-import './TabelaCliente.css';
+import './Tabela.css';
 
 type Cliente = {
   id: number;
@@ -63,7 +63,7 @@ export default class TabelaClientes extends Component<{}, State> {
 
     return (
       <>
-        <div className="tabela-clientes">
+        <div className="tabela">
           <h2>Lista de clientes registrados</h2>
           {/* Barra de pesquisa */}
           <input

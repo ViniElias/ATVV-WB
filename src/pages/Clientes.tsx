@@ -53,17 +53,17 @@ class Clientes extends Component<{}, State> {
           />
           <Card
             title="Excluir"
-            text="Exclua o cadastro de um cliente já existente."
+            text="Exclua o cadastro de um cliente buscando pelo CPF."
             click={() => this.selectCard('Excluir')}
           />
           <Card
             title="Atualizar"
-            text="Atualize as informações de um cliente."
+            text="Atualize as informações de um cliente buscando pelo CPF."
             click={() => this.selectCard('Atualizar')}
           />
           <Card
             title="Pesquisar"
-            text="Exiba os clientes registrados."
+            text="Exiba todos os clientes registrados."
             click={() => this.selectCard('Pesquisar')}
           />
         </div>

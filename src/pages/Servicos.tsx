@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Card from '../components/Card/Card';
 import CadServico from '../components/Forms/CadServico';
+import TabelaServicos from '../components/Table/TabelaServico';
+import ExcServico from '../components/Forms/ExlServico';
+import AtlServico from '../components/Forms/AtlServico';
 
 type State = {
   selectedCard: string | null;
@@ -21,11 +24,11 @@ export default class Servicos extends Component<{}, State> {
       case 'Cadastrar Produto':
         return <CadServico />
       case 'Excluir Produto':
-        return <p>Formulário de exclusão de serviço (em construção)</p>;
+        return <ExcServico />
       case 'Atualizar Produto':
-        return <p>Formulário de atualização de serviço (em construção)</p>;
+        return <AtlServico />
       case 'Listar Serviços':
-        return <p>Lista de serviços (em construção)</p>;
+        return <TabelaServicos />
       default:
         return null;
     }

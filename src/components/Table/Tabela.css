@@ -1,4 +1,4 @@
-.tabela-clientes {
+.tabela {
   margin: 2rem auto;
   width: 95%;
   max-width: 800px;
@@ -6,32 +6,32 @@
   min-height: 600px;
 }
 
-.tabela-clientes h2 {
+.tabela h2 {
   text-align: center;
   margin-bottom: 1rem;
   color: #333;
 }
 
-.tabela-clientes table {
+.tabela table {
   width: 100%;
   border-collapse: collapse;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-.tabela-clientes th,
-.tabela-clientes td {
+.tabela th,
+.tabela td {
   padding: 12px;
   border: 1px solid #ccc;
   text-align: center;
 }
 
-.tabela-clientes th {
+.tabela th {
   background-color: #dc3872;
   color: white;
   border: none;
 }
 
-.tabela-clientes tr:nth-child(even) {
+.tabela tr:nth-child(even) {
   background-color: #f2f2f2;
 }
 

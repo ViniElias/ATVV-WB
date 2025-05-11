@@ -44,6 +44,13 @@ export default class AtlCliente extends Component<{}, State> {
             <div className="form">
                 <h3>Atualizar</h3>
                 <form onSubmit={this.handleSubmit}>
+                    <label htmlFor="cpf">CPF</label>
+                    <input
+                        type="text" id="numeroCpf" name="numeroCpf"
+                        value={numeroCpf} onChange={this.handleChange}
+                        required pattern="\d{11}" maxLength={11}
+                        title="Apenas números são aceitos."
+                    />
                     <label htmlFor="nome">Nome</label>
                     <input
                         type="text" id="nome" name="nome"
@@ -69,28 +76,6 @@ export default class AtlCliente extends Component<{}, State> {
                         <div>
                             <input type="radio" id="feminino" name="genero" value="Feminino" checked={genero === 'Feminino'} onChange={this.handleChange} required />
                             <label htmlFor="nome">Feminino</label>
-                        </div>
-                    </fieldset>
-
-                    <fieldset>
-                        <legend>CPF</legend>
-                        <div className="cpfGroup">
-                            <div>
-                                <label htmlFor="cpf">Número </label>
-                                <input
-                                    type="text" id="numeroCpf" name="numeroCpf"
-                                    value={numeroCpf} onChange={this.handleChange}
-                                    required pattern="\d{11}" maxLength={11}
-                                    title="Apenas números são aceitos."
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="nome">Data de emissão </label>
-                                <input
-                                    type="date" id="dataCpf" name="dataCpf"
-                                    value={dataCpf} onChange={this.handleChange} required
-                                    min="1925-01-01" max={new Date().toISOString().split('T')[0]} />
-                            </div>
                         </div>
                     </fieldset>
 

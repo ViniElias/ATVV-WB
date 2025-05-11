@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Card from '../components/Card/Card';
 import CadProduto from '../components/Forms/CadProduto';
+import TabelaProdutos from '../components/Table/TabelaProduto';
+import ExcProduto from '../components/Forms/ExcProduto';
+import AtlProduto from '../components/Forms/AtlProduto';
 
 type State = {
   selectedCard: string | null;
@@ -21,11 +24,11 @@ export default class Produtos extends Component<{}, State> {
       case 'Cadastrar Produto':
         return <CadProduto />
       case 'Excluir Produto':
-        return <p>Formulário de exclusão de produto (em construção)</p>;
+        return <ExcProduto />
       case 'Atualizar Produto':
-        return <p>Formulário de atualização de produto (em construção)</p>;
+        return <AtlProduto />
       case 'Listar Produtos':
-        return <p>Lista de produtos (em construção)</p>;
+        return <TabelaProdutos />
       default:
         return null;
     }
@@ -43,12 +46,12 @@ export default class Produtos extends Component<{}, State> {
           />
           <Card
             title="Excluir"
-            text="Remova um produto já existente."
+            text="Remova um produto já existente buscando pelo ID."
             click={() => this.selectCard('Excluir Produto')}
           />
           <Card
             title="Atualizar"
-            text="Atualize os dados de um produto."
+            text="Atualize os dados de um produto buscando pelo ID."
             click={() => this.selectCard('Atualizar Produto')}
           />
           <Card

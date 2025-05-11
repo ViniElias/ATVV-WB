@@ -2,13 +2,13 @@ import { ChangeEvent, Component, FormEvent } from "react";
 import "./Form.css"
 
 type State = {
-    cpf: string;
+    id: string;
     mensagem: string;
 };
 
-export default class ExcCliente extends Component<{}, State> {
+export default class ExcServico extends Component<{}, State> {
     state: State = {
-        cpf: '',
+        id: '',
         mensagem: ''
     };
 
@@ -21,23 +21,23 @@ export default class ExcCliente extends Component<{}, State> {
         event.preventDefault();
 
         this.setState({
-            cpf: '',
-            mensagem: 'Cliente excluído com sucesso!'
+            id: '',
+            mensagem: 'Serviço excluído com sucesso!'
         });
     };
 
     render() {
-        const { cpf } = this.state;
+        const { id } = this.state;
 
         return (
             <div className="form">
                 <h3>Excluir</h3>
                 <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="cpf">CPF</label>
+                    <label htmlFor="id">ID</label>
                     <input
-                        type="text" id="cpf" name="cpf"
-                        value={cpf} onChange={this.handleChange}
-                        required pattern="\d{11}" maxLength={11}
+                        type="text" id="id" name="id"
+                        value={id} onChange={this.handleChange}
+                        required pattern="\d{3}" maxLength={3}
                         title="Apenas números são aceitos."
                     />
                     <button type="submit">Excluir</button>
