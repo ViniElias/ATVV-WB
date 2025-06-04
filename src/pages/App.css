@@ -10,3 +10,11 @@
   font-size: 1.8rem;
   color: #333;
 }
+
+.tabelasGenero {
+  display: flex;
+  justify-content: space-around;
+  gap: 10px;
+  width: 90%;
+  margin: auto;
+}

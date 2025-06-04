@@ -1,43 +1,40 @@
 import React, { Component, ChangeEvent } from 'react';
 import './Tabela.css';
 
-type Produto = {
+type Produtos = {
     id: number;
     nome: string;
     preco: string;
+    tipo: string;
+    quantidade: number;
 };
 
 type State = {
-    produtos: Produto[];
+    produtos: Produtos[];
     busca: string;
     paginaAtual: number;
 };
 
-export default class TabelaProdutos extends Component<{}, State> {
+export default class PrSrGeral extends Component<{}, State> {
     state: State = {
         busca: '',
         paginaAtual: 1,
         produtos: [
-            { id: 1, nome: 'Shampoo Anticaspa', preco: '30,00' },
-            { id: 2, nome: 'Condicionador Nutritivo', preco: '25,00' },
-            { id: 3, nome: 'Creme para Pentear', preco: '22,50' },
-            { id: 4, nome: 'Máscara Hidratante', preco: '35,90' },
-            { id: 5, nome: 'Gel Fixador Forte', preco: '18,00' },
-            { id: 6, nome: 'Pomada Modeladora', preco: '27,00' },
-            { id: 7, nome: 'Óleo Capilar', preco: '32,99' },
-            { id: 8, nome: 'Leave-in Reconstrutor', preco: '29,50' },
-            { id: 9, nome: 'Tônico Capilar', preco: '40,00' },
-            { id: 10, nome: 'Spray de Brilho', preco: '24,90' },
-            { id: 11, nome: 'Shampoo Neutro', preco: '19,99' },
-            { id: 12, nome: 'Condicionador Suave', preco: '21,00' },
-            { id: 13, nome: 'Ampola de Tratamento', preco: '15,00' },
-            { id: 14, nome: 'Mousse Volumizador', preco: '26,90' },
-            { id: 15, nome: 'Shampoo Matizador', preco: '33,00' },
-            { id: 16, nome: 'Máscara Matizadora', preco: '38,50' },
-            { id: 17, nome: 'Spray Texturizador', preco: '23,75' },
-            { id: 18, nome: 'Balm Capilar', preco: '28,40' },
-            { id: 19, nome: 'Sérum Reparador', preco: '36,80' },
-            { id: 20, nome: 'Kit Completo Hidratação', preco: '85,00' }
+            { id: 1, nome: 'Corte de cabelo', tipo: 'Serviço', preco: '30,00', quantidade: 32 },
+            { id: 2, nome: 'Shampoo Anticaspa', tipo: 'Produto', preco: '30,00', quantidade: 29 },
+            { id: 3, nome: 'Progressiva', tipo: 'Serviço', preco: '120,00', quantidade: 28 },
+            { id: 4, nome: 'Gel Fixador Forte', tipo: 'Produto', preco: '18,00', quantidade: 26 },
+            { id: 5, nome: 'Máscara Hidratante', tipo: 'Produto', preco: '35,90', quantidade: 25 },
+            { id: 6, nome: 'Barba completa', tipo: 'Serviço', preco: '25,00', quantidade: 23 },
+            { id: 7, nome: 'Tônico Capilar', tipo: 'Produto', preco: '40,00', quantidade: 21 },
+            { id: 8, nome: 'Coloração capilar', tipo: 'Serviço', preco: '80,00', quantidade: 19 },
+            { id: 9, nome: 'Leave-in Reconstrutor', tipo: 'Produto', preco: '29,50', quantidade: 18 },
+            { id: 10, nome: 'Pomada Modeladora', tipo: 'Produto', preco: '27,00', quantidade: 17 },
+            { id: 11, nome: 'Sérum Reparador', tipo: 'Produto', preco: '36,80', quantidade: 15 },
+            { id: 12, nome: 'Selagem térmica', tipo: 'Serviço', preco: '110,00', quantidade: 14 },
+            { id: 13, nome: 'Máscara Matizadora', tipo: 'Produto', preco: '38,50', quantidade: 13 },
+            { id: 14, nome: 'Platinado masculino', tipo: 'Serviço', preco: '90,00', quantidade: 12 },
+            { id: 15, nome: 'Escova modeladora', tipo: 'Serviço', preco: '35,00', quantidade: 12 }
         ]
     };
 
@@ -66,7 +63,7 @@ export default class TabelaProdutos extends Component<{}, State> {
         return (
             <>
                 <div className="tabela">
-                    <h2>Lista de produtos registrados</h2>
+                    <h2>Produtos/serviços mais comprados</h2>
                     {/* Barra de pesquisa */}
                     <input
                         type="text"
@@ -82,7 +79,9 @@ export default class TabelaProdutos extends Component<{}, State> {
                             <tr>
                                 <th>ID</th>
                                 <th>Nome</th>
+                                <th>Tipo</th>
                                 <th>Preço</th>
+                                <th>Quantidade</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -91,12 +90,14 @@ export default class TabelaProdutos extends Component<{}, State> {
                                     <tr key={produto.id}>
                                         <td>{produto.id}</td>
                                         <td>{produto.nome}</td>
+                                        <td>{produto.tipo}</td>
                                         <td>{produto.preco}</td>
+                                        <td>{produto.quantidade}</td>
                                     </tr>
                                 ))
                             ) : (
                                 <tr>
-                                    <td colSpan={5}>Nenhum produto encontrado.</td>
+                                    <td colSpan={5}>Nenhum produto/serviço encontrado.</td>
                                 </tr>
                             )}
                         </tbody>
