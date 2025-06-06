@@ -7,14 +7,13 @@ type Props = {
   click: () => void;
 };
 
-export default class Card extends Component<Props> {
-  render() {
-    const {title, text, click} = this.props;
-    return (
-      <div className="card" onClick={click}>
-        <h1>{title}</h1>
-        <p>{text}</p>
-      </div>
-    );
-  }
-}
+const Card: React.FC<Props> = ({ title, text, click }) => {
+  return (
+    <div className="card" onClick={click}>
+      <h1>{title}</h1>
+      <p>{text}</p>
+    </div>
+  );
+};
+
+export default Card

@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import './Header.css';
 import { Link } from 'react-router-dom';
 
-type Props = {};
-
-export default class Header extends Component<Props> {
-  render() {
+const Header = () => {
     return (
       <header className="header">
         <Link to="/clientes"><h1>World Beauty</h1></Link>
@@ -20,4 +17,5 @@ export default class Header extends Component<Props> {
       </header>
     );
   }
-}
+
+export default Header;

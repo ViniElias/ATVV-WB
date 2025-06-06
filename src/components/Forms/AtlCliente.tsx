@@ -1,90 +1,101 @@
-import { ChangeEvent, Component, FormEvent } from "react";
-import "./Form.css"
+import { ChangeEvent, FormEvent, useState } from "react";
+import "./Form.css";
 
-type State = {
-    nome: string;
-    nomeSocial: string;
-    genero: string;
-    numeroCpf: string;
-    dataCpf: string;
-    mensagem: string;
-};
+const AtlCliente = () => {
+    const [nome, setNome] = useState('');
+    const [nomeSocial, setNomeSocial] = useState('');
+    const [genero, setGenero] = useState('');
+    const [numeroCpf, setNumeroCpf] = useState('');
+    const [dataCpf, setDataCpf] = useState('');
+    const [mensagem, setMensagem] = useState('');
 
-export default class AtlCliente extends Component<{}, State> {
-    state: State = {
-        nome: '',
-        nomeSocial: '',
-        genero: '',
-        numeroCpf: '',
-        dataCpf: '',
-        mensagem: ''
-    };
-
-    handleChange = (event: ChangeEvent<HTMLInputElement>) => {
+    const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
         const { name, value } = event.target;
-        this.setState({ [name]: value } as Pick<State, keyof State>);
+
+        switch (name) {
+            case 'nome':
+                setNome(value);
+                break;
+            case 'nomeSocial':
+                setNomeSocial(value);
+                break;
+            case 'genero':
+                setGenero(value);
+                break;
+            case 'numeroCpf':
+                setNumeroCpf(value);
+                break;
+            case 'dataCpf':
+                setDataCpf(value);
+                break;
+        }
     };
 
-    handleSubmit = (event: FormEvent) => {
+    const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
 
-        this.setState({
-            nome: '',
-            nomeSocial: '',
-            genero: '',
-            numeroCpf: '',
-            dataCpf: '',
-            mensagem: 'Cliente atualizado com sucesso!'
-        });
+        setNome('');
+        setNomeSocial('');
+        setGenero('');
+        setNumeroCpf('');
+        setDataCpf('');
+        setMensagem('Cliente atualizado com sucesso!');
     };
-    render() {
-        const { nome, nomeSocial, genero, numeroCpf, dataCpf } = this.state;
 
-        return (
-            <div className="form">
-                <h3>Atualizar</h3>
-                <form onSubmit={this.handleSubmit}>
-                    <label htmlFor="cpf">CPF</label>
-                    <input
-                        type="text" id="numeroCpf" name="numeroCpf"
-                        value={numeroCpf} onChange={this.handleChange}
-                        required pattern="\d{11}" maxLength={11}
-                        title="Apenas números são aceitos."
-                    />
-                    <label htmlFor="nome">Nome</label>
-                    <input
-                        type="text" id="nome" name="nome"
-                        value={nome} onChange={this.handleChange}
-                        required pattern="[A-Za-zÀ-ÿ\s]+"
-                        title="Apenas letras e espaços são permitidos"
-                    />
+    return (
+        <div className="form">
+            <h3>Atualizar</h3>
+            <form onSubmit={handleSubmit}>
+                <label htmlFor="cpf">CPF</label>
+                <input
+                    type="text" id="numeroCpf" name="numeroCpf"
+                    value={numeroCpf} onChange={handleChange}
+                    required pattern="\d{11}" maxLength={11}
+                    title="Apenas números são aceitos."
+                />
 
-                    <label htmlFor="nomeSocial">Nome social</label>
-                    <input
-                        type="text" id="nomeSocial" name="nomeSocial"
-                        value={nomeSocial} onChange={this.handleChange}
-                        required pattern="[A-Za-zÀ-ÿ\s]+"
-                        title="Apenas letras e espaços são permitidos"
-                    />
+                <label htmlFor="nome">Nome</label>
+                <input
+                    type="text" id="nome" name="nome"
+                    value={nome} onChange={handleChange}
+                    required pattern="[A-Za-zÀ-ÿ\s]+"
+                    title="Apenas letras e espaços são permitidos"
+                />
 
-                    <fieldset id="fieldGenero">
-                        <legend>Gênero</legend>
-                        <div>
-                            <input type="radio" id="masculino" name="genero" value="Masculino" checked={genero === 'Masculino'} onChange={this.handleChange} required />
-                            <label htmlFor="nome">Masculino</label>
-                        </div>
-                        <div>
-                            <input type="radio" id="feminino" name="genero" value="Feminino" checked={genero === 'Feminino'} onChange={this.handleChange} required />
-                            <label htmlFor="nome">Feminino</label>
-                        </div>
-                    </fieldset>
+                <label htmlFor="nomeSocial">Nome social</label>
+                <input
+                    type="text" id="nomeSocial" name="nomeSocial"
+                    value={nomeSocial} onChange={handleChange}
+                    required pattern="[A-Za-zÀ-ÿ\s]+"
+                    title="Apenas letras e espaços são permitidos"
+                />
 
-                    <button type="submit">Atualizar</button>
-                </form>
-                {this.state.mensagem && (
-                    <p className="mensagem">{this.state.mensagem}</p>
-                )}
-            </div>
-        );
-    };
+                <fieldset id="fieldGenero">
+                    <legend>Gênero</legend>
+                    <div>
+                        <input
+                            type="radio" id="masculino" name="genero" value="Masculino"
+                            checked={genero === 'Masculino'} onChange={handleChange} required
+                        />
+                        <label htmlFor="masculino">Masculino</label>
+                    </div>
+                    <div>
+                        <input
+                            type="radio" id="feminino" name="genero" value="Feminino"
+                            checked={genero === 'Feminino'} onChange={handleChange} required
+                        />
+                        <label htmlFor="feminino">Feminino</label>
+                    </div>
+                </fieldset>
+
+                <button type="submit">Atualizar</button>
+            </form>
+
+            {mensagem && (
+                <p className="mensagem">{mensagem}</p>
+            )}
+        </div>
+    );
 };
+
+export default AtlCliente;
