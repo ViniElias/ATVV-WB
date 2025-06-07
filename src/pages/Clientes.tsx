@@ -73,9 +73,8 @@ class Clientes extends Component<{}, State> {
   }
 }
 
-export default class App extends Component {
-  render() {
-    return (
+const App = () => {
+  return (
       <div>
         <Header />
         <Routes>
@@ -86,5 +85,6 @@ export default class App extends Component {
         </Routes>
       </div>
     );
-  }
-}
+};
+
+export default App;
