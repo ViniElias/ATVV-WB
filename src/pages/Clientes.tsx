@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
 
 import Header from '../components/Header/Header';
@@ -12,21 +12,10 @@ import ExcCliente from '../components/Forms/ExcCliente';
 import AtlCliente from '../components/Forms/AtlCliente';
 import TabelaCliente from '../components/Table/TabelaCliente';
 
-type State = {
-  selectedCard: string | null;
-};
+const Clientes = () => {
+  const [selectedCard, setSelectedCard] = useState<string | null>(null);
 
-class Clientes extends Component<{}, State> {
-  state: State = {
-    selectedCard: null
-  };
-
-  selectCard = (title: string) => {
-    this.setState({ selectedCard: title });
-  };
-
-  renderForm = () => {
-    const { selectedCard } = this.state;
+  const renderForm = () => {
     switch (selectedCard) {
       case 'Cadastrar':
         return <CadCliente />;
@@ -41,37 +30,35 @@ class Clientes extends Component<{}, State> {
     }
   };
 
-  render() {
-    return (
-      <div>
-        <h2 className="page-title">Clientes</h2>
-        <div className="cards">
-          <Card
-            title="Cadastrar"
-            text="Realize o cadastro de um novo cliente."
-            click={() => this.selectCard('Cadastrar')}
-          />
-          <Card
-            title="Excluir"
-            text="Exclua o cadastro de um cliente buscando pelo CPF."
-            click={() => this.selectCard('Excluir')}
-          />
-          <Card
-            title="Atualizar"
-            text="Atualize as informações de um cliente buscando pelo CPF."
-            click={() => this.selectCard('Atualizar')}
-          />
-          <Card
-            title="Pesquisar"
-            text="Exiba todos os clientes registrados."
-            click={() => this.selectCard('Pesquisar')}
-          />
-        </div>
-        {this.renderForm()}
+  return (
+    <div>
+      <h2 className="page-title">Clientes</h2>
+      <div className="cards">
+        <Card
+          title="Cadastrar"
+          text="Realize o cadastro de um novo cliente."
+          click={() => setSelectedCard('Cadastrar')}
+        />
+        <Card
+          title="Excluir"
+          text="Exclua o cadastro de um cliente buscando pelo CPF."
+          click={() => setSelectedCard('Excluir')}
+        />
+        <Card
+          title="Atualizar"
+          text="Atualize as informações de um cliente buscando pelo CPF."
+          click={() => setSelectedCard('Atualizar')}
+        />
+        <Card
+          title="Pesquisar"
+          text="Exiba todos os clientes registrados."
+          click={() => setSelectedCard('Pesquisar')}
+        />
       </div>
-    );
-  }
-}
+      {renderForm()}
+    </div>
+  );
+};
 
 const App = () => {
   return (
