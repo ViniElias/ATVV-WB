@@ -1,11 +1,6 @@
 import { useState, ChangeEvent } from 'react';
 import './Tabela.css';
-
-type Produto = {
-  id: number;
-  nome: string;
-  preco: string;
-};
+import { Produto } from '../../models/Produto';
 
 const TabelaProdutos = () => {
   const [busca, setBusca] = useState('');
