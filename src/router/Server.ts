@@ -1,12 +1,15 @@
-const express = require('express');
+import express from 'express';
+import cors from 'cors';
+import router from './Clientes';
+
 const app = express();
-const cors = require('cors');
+const PORT = 3001;
 
 app.use(cors());
 app.use(express.json());
 
-const clientesRouter = require('./router/clientes');
-app.use('/api/clientes', clientesRouter);
+app.use('/clientes', router);
 
-// Export vazio para resolver o problema de --isolatedModules
-export {};
+app.listen(PORT, () => {
+  console.log(`Servidor rodando em http://localhost:${PORT}`);
+});

@@ -3,45 +3,26 @@ import { connection } from '../database/connection';
 
 const router = Router();
 
-// Listar clientes
 router.get('/', async (req, res) => {
-  try {
-    const [rows] = await connection.query('SELECT * FROM clientes');
-    res.json(rows);
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao buscar clientes' });
-  }
+  const [rows] = await connection.query('SELECT * FROM clientes');
+  res.json(rows);
 });
 
-// Cadastrar cliente
-router.post('/', async (req, res) => {
-  const { nome, nomeSocial, genero, cpf } = req.body;
-
+router.post('/cadastrarCliente', async (req, res) => {
   try {
-    const [result] = await connection.execute(
-      'INSERT INTO clientes (nome, nomeSocial, genero, cpf) VALUES (?, ?, ?, ?)',
-      [nome, nomeSocial, genero, cpf]
+    const { nome, nomesocial, genero, cpf, rg, telefone } = req.body;
+
+    await connection.query(
+      'INSERT INTO clientes (nome, nomesocial, genero, cpf, rg, telefone) VALUES (?, ?, ?, ?, ?, ?)',
+      [nome, nomesocial, genero, cpf, rg, telefone]
     );
 
-    res.status(201).json({ id: (result as any).insertId, nome, nomeSocial, genero, cpf });
+    res.status(201).json({ message: 'Cliente cadastrado com sucesso!' });
   } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao criar cliente' });
+    console.error('Erro ao cadastrar cliente:', error);
+    res.status(500).json({ message: 'Erro ao cadastrar cliente' });
   }
 });
 
-// Excluir cliente
-router.delete('/:id', async (req, res) => {
-  const { id } = req.params;
-
-  try {
-    await connection.execute('DELETE FROM clientes WHERE id = ?', [id]);
-    res.status(204).end();
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Erro ao deletar cliente' });
-  }
-});
 
 export default router;

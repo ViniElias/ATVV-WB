@@ -9,7 +9,7 @@ const TabelaClientes: React.FC = () => {
   const [clientes, setClientes] = useState<Cliente[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/api/clientes')
+    fetch('http://localhost:3001/clientes')
       .then(res => res.json())
       .then(data => setClientes(data))
       .catch(err => console.error('Erro ao carregar clientes:', err));
@@ -57,6 +57,8 @@ const TabelaClientes: React.FC = () => {
               <th>Nome Social</th>
               <th>Gênero</th>
               <th>CPF</th>
+              <th>RG</th>
+              <th>Telefone</th>
             </tr>
           </thead>
           <tbody>
@@ -68,6 +70,8 @@ const TabelaClientes: React.FC = () => {
                   <td>{cliente.nomeSocial}</td>
                   <td>{cliente.genero}</td>
                   <td>{cliente.cpf}</td>
+                  <td>{cliente.rg}</td>
+                  <td>{cliente.telefone}</td>
                 </tr>
               ))
             ) : (
