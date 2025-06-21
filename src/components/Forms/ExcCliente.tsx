@@ -10,11 +10,26 @@ const ExcCliente = () => {
     setCpf(value);
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    try {
+      const response = await fetch(`http://localhost:3001/clientes/excluirCliente/${cpf}`, {
+        method: 'DELETE'
+      });
+
+      if (response.ok) {
+        setMensagem('Cliente excluído com sucesso!');
+      } else {
+        const erro = await response.json();
+        setMensagem('Erro: ' + erro.message);
+      }
+    } catch (err) {
+      console.error('Erro ao excluir cliente:', err);
+      setMensagem('Erro ao conectar com o servidor.');
+    }
+
     setCpf('');
-    setMensagem('Cliente excluído com sucesso!');
   };
 
   return (

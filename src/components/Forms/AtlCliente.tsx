@@ -5,8 +5,9 @@ const AtlCliente = () => {
     const [nome, setNome] = useState('');
     const [nomeSocial, setNomeSocial] = useState('');
     const [genero, setGenero] = useState('');
-    const [numeroCpf, setNumeroCpf] = useState('');
-    const [dataCpf, setDataCpf] = useState('');
+    const [cpf, setCpf] = useState('');
+    const [rg, setRg] = useState('');
+    const [telefone, setTelefone] = useState('');
     const [mensagem, setMensagem] = useState('');
 
     const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -22,24 +23,46 @@ const AtlCliente = () => {
             case 'genero':
                 setGenero(value);
                 break;
-            case 'numeroCpf':
-                setNumeroCpf(value);
+            case 'cpf':
+                setCpf(value);
                 break;
-            case 'dataCpf':
-                setDataCpf(value);
+            case 'rg':
+                setRg(value);
+                break;
+            case 'telefone':
+                setTelefone(value);
                 break;
         }
     };
 
-    const handleSubmit = (event: FormEvent) => {
+    const handleSubmit = async (event: FormEvent) => {
         event.preventDefault();
 
-        setNome('');
-        setNomeSocial('');
-        setGenero('');
-        setNumeroCpf('');
-        setDataCpf('');
-        setMensagem('Cliente atualizado com sucesso!');
+        try {
+            const response = await fetch(`http://localhost:3001/clientes/atualizarCliente/${cpf}`, {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    nome,
+                    nomesocial: nomeSocial,
+                    genero,
+                    rg,
+                    telefone
+                })
+            });
+
+            if (response.ok) {
+                setMensagem('Cliente atualizado com sucesso!');
+            } else {
+                const erro = await response.json();
+                setMensagem('Erro: ' + erro.message);
+            }
+        } catch (err) {
+            console.error('Erro ao atualizar cliente:', err);
+            setMensagem('Erro ao conectar com o servidor.');
+        }
     };
 
     return (
@@ -48,8 +71,8 @@ const AtlCliente = () => {
             <form onSubmit={handleSubmit}>
                 <label htmlFor="cpf">CPF</label>
                 <input
-                    type="text" id="numeroCpf" name="numeroCpf"
-                    value={numeroCpf} onChange={handleChange}
+                    type="text" id="cpf" name="cpf"
+                    value={cpf} onChange={handleChange}
                     required pattern="\d{11}" maxLength={11}
                     title="Apenas números são aceitos."
                 />
@@ -74,19 +97,35 @@ const AtlCliente = () => {
                     <legend>Gênero</legend>
                     <div>
                         <input
-                            type="radio" id="masculino" name="genero" value="Masculino"
-                            checked={genero === 'Masculino'} onChange={handleChange} required
+                            type="radio" id="masculino" name="genero" value="M"
+                            checked={genero === 'M'} onChange={handleChange} required
                         />
                         <label htmlFor="masculino">Masculino</label>
                     </div>
                     <div>
                         <input
-                            type="radio" id="feminino" name="genero" value="Feminino"
-                            checked={genero === 'Feminino'} onChange={handleChange} required
+                            type="radio" id="feminino" name="genero" value="F"
+                            checked={genero === 'F'} onChange={handleChange} required
                         />
                         <label htmlFor="feminino">Feminino</label>
                     </div>
                 </fieldset>
+
+                <label htmlFor="rg">RG</label>
+                <input
+                    type="text" id="rg" name="rg"
+                    value={rg} onChange={handleChange}
+                    required pattern="\d{9}" maxLength={9}
+                    title="Apenas números são aceitos."
+                />
+
+                <label htmlFor="telefone">Telefone</label>
+                <input
+                    type="text" id="telefone" name="telefone"
+                    value={telefone} onChange={handleChange}
+                    required pattern="\d{11}" maxLength={11}
+                    title="Apenas números são aceitos."
+                />
 
                 <button type="submit">Atualizar</button>
             </form>

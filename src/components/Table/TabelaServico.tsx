@@ -1,34 +1,19 @@
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import './Tabela.css';
+import { Servico } from '../../models/Servico';
 
-type Produto = {
-    id: number;
-    nome: string;
-    preco: string;
-};
-
-const TabelaServicos: React.FC = () => {
+const TabelaServicos = () => {
     const [busca, setBusca] = useState('');
     const [paginaAtual, setPaginaAtual] = useState(1);
+    const [servicos, setServicos] = useState<Servico[]>([]);
     const servicosPorPagina = 10;
 
-    const [servicos] = useState<Produto[]>([
-        { id: 1, nome: 'Corte de cabelo', preco: '30,00' },
-        { id: 2, nome: 'Barba completa', preco: '25,00' },
-        { id: 3, nome: 'Sobrancelha com pinça', preco: '15,00' },
-        { id: 4, nome: 'Hidratação capilar', preco: '40,00' },
-        { id: 5, nome: 'Progressiva', preco: '120,00' },
-        { id: 6, nome: 'Coloração capilar', preco: '80,00' },
-        { id: 7, nome: 'Luzes ou mechas', preco: '150,00' },
-        { id: 8, nome: 'Penteado para festa', preco: '70,00' },
-        { id: 9, nome: 'Escova modeladora', preco: '35,00' },
-        { id: 10, nome: 'Selagem térmica', preco: '110,00' },
-        { id: 11, nome: 'Design de barba', preco: '28,00' },
-        { id: 12, nome: 'Corte infantil', preco: '20,00' },
-        { id: 13, nome: 'Platinado masculino', preco: '90,00' },
-        { id: 14, nome: 'Limpeza de pele', preco: '50,00' },
-        { id: 15, nome: 'Massagem capilar', preco: '32,00' }
-    ]);
+    useEffect(() => {
+        fetch('http://localhost:3001/servicos')
+          .then(res => res.json())
+          .then(data => setServicos(data))
+          .catch(err => console.error('Erro ao carregar serviços:', err));
+      }, []);
 
     const handleBusca = (event: ChangeEvent<HTMLInputElement>) => {
         setBusca(event.target.value);
@@ -65,7 +50,7 @@ const TabelaServicos: React.FC = () => {
                         <tr>
                             <th>ID</th>
                             <th>Nome</th>
-                            <th>Preço</th>
+                            <th>Preço (R$)</th>
                         </tr>
                     </thead>
                     <tbody>

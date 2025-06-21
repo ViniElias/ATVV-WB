@@ -19,12 +19,33 @@ const CadServico = () => {
     }
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
-    setNome('');
-    setPreco('');
-    setMensagem('Serviço cadastrado com sucesso!');
+    try {
+      const response = await fetch('http://localhost:3001/servicos/cadastrarServico', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          nome,
+          preco
+        })
+      });
+
+      if (response.ok) {
+        setMensagem('Serviço cadastrado com sucesso!');
+        setNome('');
+        setPreco('');
+      } else {
+        const erro = await response.json();
+        setMensagem('Erro ao cadastrar: ' + erro.message);
+      }
+    } catch (err) {
+      console.error('Erro ao cadastrar serviço:', err);
+      setMensagem('Erro de conexão com o servidor.');
+    }
   };
 
   return (

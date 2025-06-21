@@ -9,11 +9,26 @@ const ExcServico = () => {
     setId(event.target.value);
   };
 
-  const handleSubmit = (event: FormEvent) => {
+  const handleSubmit = async (event: FormEvent) => {
     event.preventDefault();
 
+    try {
+      const response = await fetch(`http://localhost:3001/servicos/excluirServico/${id}`, {
+        method: 'DELETE'
+      });
+
+      if (response.ok) {
+        setMensagem('Serviço excluído com sucesso!');
+      } else {
+        const erro = await response.json();
+        setMensagem('Erro: ' + erro.message);
+      }
+    } catch (err) {
+      console.error('Erro ao excluir serviço:', err);
+      setMensagem('Erro ao conectar com o servidor.');
+    }
+
     setId('');
-    setMensagem('Serviço excluído com sucesso!');
   };
 
   return (
@@ -24,7 +39,7 @@ const ExcServico = () => {
         <input
           type="text" id="id" name="id"
           value={id} onChange={handleChange}
-          required pattern="\d{3}" maxLength={3}
+          required pattern="\d{1}" maxLength={1}
           title="Apenas números são aceitos."
         />
         <button type="submit">Excluir</button>
