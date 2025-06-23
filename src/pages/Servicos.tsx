@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Card from '../components/Card/Card';
+import Card from '../components/Cards/Card';
 import CadServico from '../components/Forms/CadServico';
 import TabelaServicos from '../components/Table/TabelaServico';
 import ExcServico from '../components/Forms/ExlServico';

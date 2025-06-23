@@ -10,11 +10,11 @@ routerServico.get('/', async (req, res) => {
 
 routerServico.post('/cadastrarServico', async (req, res) => {
   try {
-    const { nome, preco } = req.body;
+    const { nome, preco, vendas, vendasH, vendasM, tipo } = req.body;
 
     await connection.query(
-      'INSERT INTO servicos (nome, preco) VALUES (?, ?)',
-      [nome, preco]
+      'INSERT INTO servicos (nome, preco, vendas, vendasH, vendasM, tipo) VALUES (?, ?, 0, 0, 0, "serviço")',
+      [nome, preco, vendas, vendasH, vendasM, tipo]
     );
 
     res.status(201).json({ message: 'Serviço cadastrado com sucesso!' });

@@ -8,13 +8,40 @@ routerProduto.get('/', async (req, res) => {
   res.json(rows);
 });
 
+routerProduto.get('/geral', async (req, res) => {
+  const [rows] = await connection.query(
+    `SELECT * FROM produtos
+    UNION ALL
+    SELECT * FROM servicos
+    ORDER BY vendas DESC`);
+  res.json(rows);
+});
+
+routerProduto.get('/masculino', async (req, res) => {
+  const [rows] = await connection.query(
+    `SELECT * FROM produtos
+    UNION ALL
+    SELECT * FROM servicos
+    ORDER BY vendasH DESC`);
+  res.json(rows);
+});
+
+routerProduto.get('/feminino', async (req, res) => {
+  const [rows] = await connection.query(
+    `SELECT * FROM produtos
+    UNION ALL
+    SELECT * FROM servicos
+    ORDER BY vendasM DESC`);
+  res.json(rows);
+});
+
 routerProduto.post('/cadastrarProduto', async (req, res) => {
   try {
-    const { nome, preco } = req.body;
+    const { nome, preco, vendas, vendasH, vendasM, tipo } = req.body;
 
     await connection.query(
-      'INSERT INTO produtos (nome, preco) VALUES (?, ?)',
-      [nome, preco]
+      'INSERT INTO produtos (nome, preco, vendas, vendasH, vendasM, tipo) VALUES (?, ?, 0, 0, 0, "produto")',
+      [nome, preco, vendas, tipo, vendasH, vendasM]
     );
 
     res.status(201).json({ message: 'Produto cadastrado com sucesso!' });

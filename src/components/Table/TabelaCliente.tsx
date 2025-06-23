@@ -59,6 +59,8 @@ const TabelaClientes: React.FC = () => {
               <th>CPF</th>
               <th>RG</th>
               <th>Telefone</th>
+              <th>Compras</th>
+              <th>Valor (R$)</th>
             </tr>
           </thead>
           <tbody>
@@ -72,6 +74,8 @@ const TabelaClientes: React.FC = () => {
                   <td>{cliente.cpf}</td>
                   <td>{cliente.rg}</td>
                   <td>{cliente.telefone}</td>
+                  <td>{cliente.quantidade}</td>
+                  <td>{cliente.valor}</td>
                 </tr>
               ))
             ) : (

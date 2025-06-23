@@ -8,35 +8,31 @@ CREATE TABLE Clientes (
     genero VARCHAR(1),
     cpf VARCHAR(11) UNIQUE,
     rg VARCHAR(9) UNIQUE,
-    telefone VARCHAR(15) UNIQUE
+    telefone VARCHAR(15) UNIQUE,
+    quantidade INT,
+    valor FLOAT
 );
 
 CREATE TABLE Produtos (
     id INT AUTO_INCREMENT KEY,
     nome VARCHAR(50),
-    preco INT
+    preco FLOAT,
+    vendas INT,
+    vendasH INT,
+    vendasM INT,
+    tipo VARCHAR(7)
 );
 
 CREATE TABLE Servicos (
     id INT AUTO_INCREMENT KEY,
     nome VARCHAR(50),
-    preco INT
+    preco FLOAT,
+    vendas INT,
+    vendasH INT,
+    vendasM INT,
+    tipo VARCHAR(7)
 );
 
-CREATE TABLE ClientesProdutos (
-    idCliente INT,
-    idProduto INT,
-    quantidade INT,
-    PRIMARY KEY (idCliente, idProduto),
-    FOREIGN KEY (idCliente) REFERENCES Clientes(id),
-    FOREIGN KEY (idProduto) REFERENCES Produtos(id)
-);
+SHOW TABLES;
 
-CREATE TABLE ClientesServicos (
-    idCliente INT,
-    idServico INT,
-    quantidade INT,
-    PRIMARY KEY (idCliente, idServico),
-    FOREIGN KEY (idCliente) REFERENCES Clientes(id),
-    FOREIGN KEY (idServico) REFERENCES Servicos(id)
-);
+SELECT * FROM clientes;

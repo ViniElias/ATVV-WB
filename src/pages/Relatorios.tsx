@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import Card from '../components/Card/Card';
+import Card from '../components/Cards/Card';
 import MaiorQntd from '../components/Table/MaiorQntd';
 import MenorQntd from '../components/Table/MenorQntd';
 import MaiorValor from '../components/Table/MaiorValor';
@@ -39,7 +39,7 @@ const Relatorios = () => {
       <div className="cards">
         <Card
           title="Maiores consumidores em quantidade"
-          text="Liste os 10 clientes que mais compraram (em quantidade, não valor)."
+          text="Liste os clientes que mais compraram (em quantidade, não valor)."
           click={() => setSelectedCard('Maior quantidade')}
         />
         <Card
@@ -61,12 +61,12 @@ const Relatorios = () => {
         />
         <Card
           title="Menores consumidores em quantidade"
-          text="Liste os 10 clientes que menos compraram (em quantidade, não valor)."
+          text="Liste os clientes que menos compraram (em quantidade, não valor)."
           click={() => setSelectedCard('Menor quantidade')}
         />
         <Card
           title="Maiores consumidores em valor"
-          text="Liste os 5 clientes que mais gastaram."
+          text="Liste os clientes que mais gastaram."
           click={() => setSelectedCard('Maior valor')}
         />
       </div>

@@ -51,6 +51,7 @@ const TabelaServicos = () => {
                             <th>ID</th>
                             <th>Nome</th>
                             <th>Preço (R$)</th>
+                            <th>Vendas</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -60,6 +61,7 @@ const TabelaServicos = () => {
                                     <td>{servico.id}</td>
                                     <td>{servico.nome}</td>
                                     <td>{servico.preco}</td>
+                                    <td>{servico.vendas}</td>
                                 </tr>
                             ))
                         ) : (
