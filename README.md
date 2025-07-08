@@ -24,4 +24,6 @@ E então o backend:
 
     npm run dev
 
+Para executar o banco de dados MySQL, copie e cole o código SQL encontrado em src/database/setupDB.sql em uma instância do MySQL Workbench.
+
 Abra http://localhost:3000 em seu navegador para visualizar a aplicação.
